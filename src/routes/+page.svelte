@@ -2,19 +2,39 @@
   import Navbar from "$lib/components/navbar.svelte";
   import Carousel from "$lib/components/carousel.svelte";
   import Footer from "$lib/components/footer.svelte";
+  import { onMount } from "svelte";
 
-  let images = [
-    "/screenshot1.jpg",
-    "/screenshot2.png",
-    "/screenshot3.png",
-    "/screenshot4.png",
-    "/screenshot5.jpg",
-    "/screenshot6.jpg",
-    "/screenshot7.jpg",
-    "/screenshot8.jpg",
-    "/screenshot9.png",
-  ];
+  let images = ["/screenshot1.jpeg", "/screenshot2.jpeg", "/screenshot3.jpeg"];
+
+  function addPassiveEventListeners() {
+    window.addEventListener("scroll", handleScroll, { passive: true });
+  }
+
+  function handleScroll(event: Event) {}
+
+  onMount(() => {
+    addPassiveEventListeners();
+  });
 </script>
+
+<svelte:head>
+  <title>habit film</title>
+  <meta name="description" content="build habits by filming 2 seconds a day." />
+  <meta property="og:title" content="habit film" />
+  <meta
+    property="og:description"
+    content="build habits by filming 2 seconds a day."
+  />
+  <meta property="og:image" content="/og.png" />
+  <meta property="og:url" content="https://www.habit.film" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="habit film" />
+  <meta
+    name="twitter:description"
+    content="build habits by filming 2 seconds a day."
+  />
+  <meta name="twitter:image" content="/og.png" />
+</svelte:head>
 
 <Navbar />
 
