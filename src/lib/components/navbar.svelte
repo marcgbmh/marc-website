@@ -1,21 +1,41 @@
-<nav
-  class="absolute top-0 left-0 right-0 flex justify-between items-center p-4 bg-background text-white"
->
-  <div class="flex items-center gap-2">
-    <div
-      class="logo text-primary font-bold text-xl bg-primary w-9 h-9 rounded-full"
-    ></div>
-    <p class="text-primary font-bold text-xl">habit film</p>
-  </div>
-  <button
-    class="underline text-primary font-bold text-xl py-2 px-4 rounded text-stroke"
-  >
-    get the app
-  </button>
-</nav>
+<script lang="ts">
+  import { onMount } from "svelte";
+  import { goto } from "$app/navigation";
+  import { page } from "$app/stores";
+  import type { Note } from "$lib/types";
 
-<style>
-  .bg-background {
-    background-color: var(--background-color);
+  let notes: Note[] = [];
+  let currentSlug: string = "";
+
+  onMount(async () => {
+    const response = await fetch("/api/notes");
+    notes = await response.json();
+    currentSlug = window.location.pathname.slice(1); // Get the current slug from the URL
+  });
+
+  function navigateToHome() {
+    goto("/");
   }
-</style>
+
+  function navigateToPost(slug: string) {
+    goto(`/${slug}`);
+  }
+</script>
+
+<aside class="top-0 left-0 h-full w-56 bg-background p-4">
+  <ul>
+    <li class="mb-2 flex items-center gap-2">
+      <div class="h-2 w-2 rounded-full bg-green-800"></div>
+      <button on:click={navigateToHome}>marc</button>
+    </li>
+    {#each notes as note}
+      <li class="mb-2">
+        <button
+          on:click={() => navigateToPost(note.slug)}
+          class:text-black={$page.url.pathname === `/${note.slug}`}
+          >{note.title}</button
+        >
+      </li>
+    {/each}
+  </ul>
+</aside>

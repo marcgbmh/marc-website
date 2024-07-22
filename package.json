@@ -26,7 +26,13 @@
 	"dependencies": {
 		"bits-ui": "^0.21.12",
 		"clsx": "^2.1.1",
+		"mdsvex": "^0.11.2",
+		"rehype-external-links": "^3.0.0",
+		"remark-breaks": "^4.0.0",
+		"remark-external-links": "^9.0.1",
+		"svelte-routing": "^2.13.0",
 		"tailwind-merge": "^2.4.0",
-		"tailwind-variants": "^0.2.1"
+		"tailwind-variants": "^0.2.1",
+		"unist-util-visit": "^5.0.0"
 	}
 }
