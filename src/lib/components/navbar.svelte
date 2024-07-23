@@ -10,7 +10,7 @@
   onMount(async () => {
     const response = await fetch("/api/notes");
     notes = await response.json();
-    currentSlug = window.location.pathname.slice(1); // Get the current slug from the URL
+    currentSlug = window.location.pathname.slice(1);
   });
 
   function navigateToHome() {
