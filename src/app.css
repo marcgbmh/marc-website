@@ -44,9 +44,8 @@
   body {
     @apply bg-background text-foreground;
     font-family: monospace;
-
-    p {
-      margin-bottom: 1em;
-    }
+  }
+  .markdown p {
+    margin-bottom: 1em;
   }
 }
